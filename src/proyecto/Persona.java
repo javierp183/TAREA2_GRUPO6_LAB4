@@ -2,41 +2,46 @@ package proyecto;
 
 public class Persona {
 
-	private int dni;
-	private String nombre;
-	private String apellido;
+	private int Dni;
+	private String Nombre;
+	private String Apellido;
 	
 	//gets y sets
 	public int getDni() {
-		return dni;
+		return Dni;
 	}
 	public void setDni(int dni) {
-		this.dni = dni;
+		this.Dni = dni;
 	}
 	public String getNombre() {
-		return nombre;
+		return Nombre;
 	}
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.Nombre = nombre;
 	}
 	public String getApellido() {
-		return apellido;
+		return Apellido;
 	}
 	public void setApellido(String apellido) {
-		this.apellido = apellido;
+		this.Apellido = apellido;
 	}
 	
-	// constructores
+	// Constructors
 	
 	public Persona() {
-		dni=11111111;
-		nombre = "Sin Nombre";
-		apellido = "Sin Apellido";
+		Dni=11111111;
+		Nombre = "Sin Nombre";
+		Apellido = "Sin Apellido";
 	}
 	
 	public Persona(String nombre, String apellido, int dni) {
-		setNombre(nombre);
-		setApellido(apellido);
-		setDni(dni);
+		this.Nombre = nombre;
+		this.Apellido = apellido;
+		this.Dni = dni;;
 	}
+
+	@Override
+    public String toString() {
+        return "Apellido: " + this.Apellido + " " + "Nombre: " + this.Nombre + " " + "Dni: " + this.Dni;
+    }
 }
