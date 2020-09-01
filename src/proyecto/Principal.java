@@ -4,12 +4,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import ejemplo1_Equals.Persona;
+
 public class Principal {
 
 	public static void main(String[] args) {
 
 		// Lista de Personas
-		ArrayList<String> elementos = new ArrayList<String>();
+		ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
+		Persona persona = new Persona();
+		
+		String[] contenido=null;
+		String linea="";
 
 		// Leer el archivo llamado Personas Empresa.txt
 		String ruta = "PersonasEmpresa.txt ";
@@ -19,19 +25,29 @@ public class Principal {
 			BufferedReader miBuffer = new BufferedReader(entrada);
 			ArrayList<String> aux = new ArrayList<String>();
 	
-			   String linea = "";
+			   //String linea = "";
 				while (linea != null) {
 					
-					String[] contenido = linea.split("-");
-					
-					for(String cl: contenido) {
-						aux.add(cl);
+					contenido=linea.split("\\n-");
+
+					for(int i=0; i < contenido.length; i++) {
+						if(contenido[i] != "") {
+						persona.setNombre(contenido[i].split("-")[0]);
+						persona.setApellido(contenido[i].split("-")[1]);
+						int castnumdni = Integer.parseInt(contenido[i].split("-")[2]);
+						
+						if(contenido[i].split("-")[2].length() == 8) {
+							persona.setDni(castnumdni);
+							listaPersonas.add(persona);
+						}
+						
+						}
 					}
-					
 					
 					linea = miBuffer.readLine();
 				}
-				System.out.println(aux);
+				System.out.println(listaPersonas);
+				System.out.println(persona.toString());
 				
 				miBuffer.close();
 				entrada.close();
