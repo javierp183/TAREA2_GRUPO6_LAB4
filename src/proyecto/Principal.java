@@ -17,18 +17,21 @@ public class Principal {
 		try {
 			entrada = new FileReader(ruta);
 			BufferedReader miBuffer = new BufferedReader(entrada);
-			ArrayList<String> auxiliar = new ArrayList<String>();
-			
-			
+			ArrayList<String> aux = new ArrayList<String>();
+	
 			   String linea = "";
 				while (linea != null) {
-
-					String[] cadalinea = linea.split("-");
-					for (String cl : cadalinea) {
-						elementos.add(cl);
+					
+					String[] contenido = linea.split("-");
+					
+					for(String cl: contenido) {
+						aux.add(cl);
 					}
 					
+					
+					linea = miBuffer.readLine();
 				}
+				System.out.println(aux);
 				
 				miBuffer.close();
 				entrada.close();
