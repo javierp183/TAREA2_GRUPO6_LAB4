@@ -47,7 +47,6 @@ public class Principal {
 					linea = miBuffer.readLine();
 				}
 				System.out.println(listaPersonas);
-				System.out.println(persona.toString());
 				
 				miBuffer.close();
 				entrada.close();
