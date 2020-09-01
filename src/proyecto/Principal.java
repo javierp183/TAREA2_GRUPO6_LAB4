@@ -1,6 +1,8 @@
 package proyecto;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -55,8 +57,18 @@ public class Principal {
 			System.out.println("No se encontro el archivo");
 		}
 		
-		
-		
+		//Guarda la datos de la lista
+		try 
+		{	
+		String rutadondeguardo = "salida.txt";
+		FileWriter entradaguardo = new FileWriter(rutadondeguardo, true);
+		BufferedWriter miBuffer = new BufferedWriter(entradaguardo);
+		miBuffer.write("Guardo lista procesada aqui");
+		miBuffer.close();
+		entradaguardo.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
