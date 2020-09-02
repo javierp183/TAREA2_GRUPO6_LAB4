@@ -14,8 +14,7 @@ public class Principal {
 
 		// Lista de Personas
 		ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
-		
-		
+
 		String[] contenido=null;
 		String linea="";
 
@@ -56,6 +55,13 @@ public class Principal {
 
 		} catch (IOException e) {
 			System.out.println("No se encontro el archivo");
+		}
+		
+		for(int i=0; i< listaPersonas.size(); i++)
+		{
+			System.out.println(listaPersonas.get(i).getNombre());
+			System.out.println(listaPersonas.get(i).getApellido());
+			System.out.println(listaPersonas.get(i).getDni());
 		}
 	
 		//Guarda la datos de la lista
