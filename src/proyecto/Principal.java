@@ -24,7 +24,7 @@ public class Principal {
 		try {
 			entrada = new FileReader(ruta);
 			BufferedReader miBuffer = new BufferedReader(entrada);
-			ArrayList<String> aux = new ArrayList<String>();
+			ArrayList<Persona> auxPersonas = new ArrayList<Persona>();
 	
 			   //String linea = "";
 				while (linea != null) {
@@ -49,6 +49,20 @@ public class Principal {
 					linea = miBuffer.readLine();
 				}
 				System.out.println(listaPersonas);
+				
+				//Eliminamos duplicado
+				for(Persona element: listaPersonas) {
+					if(!auxPersonas.contains(element)) {
+						auxPersonas.add(element);
+					}
+				}
+				
+				System.out.println(auxPersonas);
+				
+				listaPersonas = auxPersonas;
+				
+				System.out.println(listaPersonas);
+				
 				
 				miBuffer.close();
 				entrada.close();
