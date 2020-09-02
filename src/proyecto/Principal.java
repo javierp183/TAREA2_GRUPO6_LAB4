@@ -11,6 +11,18 @@ import java.util.Comparator;
 
 import proyecto.Persona;
 
+//*********************************************************
+//					INTEGRANTES
+//				1- Javier Pereyra
+//				2- Juan Ignacio Corrionero
+//				3- Mariano Indaburo
+//
+//
+//         - Ignacio Lacioppa se dio de baja en la materia.
+//
+//*********************************************************
+
+
 public class Principal {
 
 	public static void main(String[] args) {
