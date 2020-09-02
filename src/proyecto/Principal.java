@@ -75,7 +75,7 @@ public class Principal {
 			persona.setDni(listaPersonas.get(i).getDni());
 			System.out.println(persona.getNombre() + "-" + persona.getApellido() + "-" + persona.getDni());
 			
-		miBuffer.write(persona.getNombre() + "-" + persona.getApellido() + "-" + persona.getDni() + "\\n");
+		miBuffer.write(persona.getNombre() + "-" + persona.getApellido() + "-" + persona.getDni() + "\n");
 		}
 		miBuffer.close();
 		entradaguardo.close();
