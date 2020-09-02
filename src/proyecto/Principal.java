@@ -5,8 +5,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.*;
+import java.util.Comparator;
 
-import ejemplo1_Equals.Persona;
+
+import proyecto.Persona;
 
 public class Principal {
 
@@ -56,12 +59,23 @@ public class Principal {
 						auxPersonas.add(element);
 					}
 				}
+			
 				
-				System.out.println(auxPersonas);
+				//System.out.println(auxPersonas);
 				
 				listaPersonas = auxPersonas;
 				
+				//System.out.println(listaPersonas);
+				
+				
+				Collections.sort(listaPersonas, new Comparator<Persona>() {
+					public int compare(Persona p1, Persona p2) {
+						return Integer.valueOf(p2.getNombre().compareTo(p1.getNombre()));
+					}
+				});
+				
 				System.out.println(listaPersonas);
+		
 				
 				
 				miBuffer.close();
