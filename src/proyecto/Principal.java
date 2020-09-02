@@ -33,7 +33,7 @@ public class Principal {
 				while (linea != null) {
 					
 					contenido=linea.split("\\n-");
-
+						
 					for(int i=0; i < contenido.length; i++) {
 						if(contenido[i] != "") {
 						Persona persona = new Persona();
@@ -53,7 +53,7 @@ public class Principal {
 				}
 				System.out.println(listaPersonas);
 				
-				//Eliminamos duplicado
+				//Eliminamos duplicado con hash implementado en Persona.
 				for(Persona element: listaPersonas) {
 					if(!auxPersonas.contains(element)) {
 						auxPersonas.add(element);
@@ -67,7 +67,7 @@ public class Principal {
 				
 				//System.out.println(listaPersonas);
 				
-				
+				///Lista ordenada por Nombre de Z-A
 				Collections.sort(listaPersonas, new Comparator<Persona>() {
 					public int compare(Persona p1, Persona p2) {
 						return Integer.valueOf(p2.getNombre().compareTo(p1.getNombre()));
