@@ -57,12 +57,9 @@ public class Principal {
 			System.out.println("No se encontro el archivo");
 		}
 		
-		for(int i=0; i< listaPersonas.size(); i++)
-		{
-			System.out.println(listaPersonas.get(i).getNombre());
-			System.out.println(listaPersonas.get(i).getApellido());
-			System.out.println(listaPersonas.get(i).getDni());
-		}
+
+
+		
 	
 		//Guarda la datos de la lista
 		try 
@@ -70,7 +67,16 @@ public class Principal {
 		String rutadondeguardo = "salida.txt";
 		FileWriter entradaguardo = new FileWriter(rutadondeguardo, true);
 		BufferedWriter miBuffer = new BufferedWriter(entradaguardo);
-		miBuffer.write("Guardo lista procesada aqui");
+		for(int i=0; i< listaPersonas.size(); i++)
+		{
+			Persona persona = new Persona();
+			persona.setNombre(listaPersonas.get(i).getNombre());
+			persona.setApellido(listaPersonas.get(i).getApellido());
+			persona.setDni(listaPersonas.get(i).getDni());
+			System.out.println(persona.getNombre() + "-" + persona.getApellido() + "-" + persona.getDni());
+			
+		miBuffer.write(persona.getNombre() + "-" + persona.getApellido() + "-" + persona.getDni() + "\\n");
+		}
 		miBuffer.close();
 		entradaguardo.close();
 		} catch (IOException e) {
