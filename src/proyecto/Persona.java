@@ -76,4 +76,17 @@ public class Persona {
     public String toString() {
         return "Apellido: " + this.Apellido + " " + "Nombre: " + this.Nombre + " " + "Dni: " + this.Dni;
     }
+	
+	public static boolean validarDNI(String dni) throws FaltaDigitoException
+	{
+		Boolean auxDigitos = false;
+		
+		if(dni.length() == 8) {
+			return true;
+		}
+		
+		FaltaDigitoException exc1 = new FaltaDigitoException();
+		throw exc1;
+		
+	}
 }
