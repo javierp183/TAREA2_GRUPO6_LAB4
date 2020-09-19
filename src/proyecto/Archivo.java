@@ -9,21 +9,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class Archivo {
 	
-	private String ruta;
+	private String rutaleer;
+	private String rutaguardar;
 	
-	public void leeArchivo(ArrayList<Persona> listaPersonas)
+	
+	public void leeProcesoArchivo(HashSet<Persona> listaPersonas)
 	{
 	
 	// Leer el archivo llamado Personas Empresa.txt
 	FileReader entrada;
-	
 	String[] contenido=null;
 	String linea="";
 	try {
-		entrada = new FileReader(ruta);
+		entrada = new FileReader(rutaleer);
 		BufferedReader miBuffer = new BufferedReader(entrada);
 		ArrayList<Persona> auxPersonas = new ArrayList<Persona>();
 
@@ -37,11 +42,18 @@ public class Archivo {
 					Persona persona = new Persona();
 					persona.setNombre(contenido[i].split("-")[0]);
 					persona.setApellido(contenido[i].split("-")[1]);
-					int castnumdni = Integer.parseInt(contenido[i].split("-")[2]);
-
-					if(contenido[i].split("-")[2].length() == 8) {
+					
+					
+					try {
+						// Solo resguardo las personas que tienen dni con 8 digitos usando
+						// un try personalizado
+						int castnumdni = Integer.parseInt(contenido[i].split("-")[2]);
+						persona.validarDNI(contenido[i].split("-")[2].length());
 						persona.setDni(castnumdni);
 						listaPersonas.add(persona);
+					
+					} catch (FaltaDigitoException e) {
+						
 					}
 					
 					}
@@ -59,21 +71,19 @@ public class Archivo {
 			}
 		
 			
+			// Esto esta comendato pero deberiamos ordenar el hash usando el ejemplo de los videos
 			//System.out.println(auxPersonas);
 			
-			listaPersonas = auxPersonas;
+//			listaPersonas = auxPersonas;
 			
 			//System.out.println(listaPersonas);
 			
 			///Lista ordenada por Nombre de Z-A
-			Collections.sort(listaPersonas, new Comparator<Persona>() {
-				public int compare(Persona p1, Persona p2) {
-					return Integer.valueOf(p2.getNombre().compareTo(p1.getNombre()));
-				}
-			});
-			
-			System.out.println(listaPersonas);
-	
+//			Collections.sort(listaPersonas, new Comparator<Persona>() {
+//				public int compare(Persona p1, Persona p2) {
+//					return Integer.valueOf(p2.getNombre().compareTo(p1.getNombre()));
+//				}
+//			});
 			
 			
 			miBuffer.close();
@@ -87,7 +97,7 @@ public class Archivo {
 
 	}
 	
-	public void escribeArchivo(ArrayList<Persona> listaPersonas)
+	public void escribeArchivoprocesado(HashSet<Persona> listaPersonas)
 	{
 		
 		try 
@@ -95,16 +105,18 @@ public class Archivo {
 		String rutadondeguardo = "salida.txt";
 		FileWriter entradaguardo = new FileWriter(rutadondeguardo, true);
 		BufferedWriter miBuffer = new BufferedWriter(entradaguardo);
-		for(int i=0; i< listaPersonas.size(); i++)
+		
+		
+		//java.util.Iterator<Persona> iterator = listaPersonas.iterator();
+		
+		List<Persona> lista = new ArrayList<Persona>( listaPersonas );
+		
+		for(int i=0; i<lista.size(); i++)
 		{
-			Persona persona = new Persona();
-			persona.setNombre(listaPersonas.get(i).getNombre());
-			persona.setApellido(listaPersonas.get(i).getApellido());
-			persona.setDni(listaPersonas.get(i).getDni());
-			System.out.println(persona.getNombre() + "-" + persona.getApellido() + "-" + persona.getDni());
-			
-		miBuffer.write(persona.getNombre() + "-" + persona.getApellido() + "-" + persona.getDni() + "\n");
+			System.out.println(lista.get(i).getNombre() + "-" + lista.get(i).getApellido() + "-" + lista.get(i).getDni());
+			miBuffer.write(lista.get(i).getNombre() + "-" + lista.get(i).getApellido() + "-" + lista.get(i).getDni() + "\n");
 		}
+
 		miBuffer.close();
 		entradaguardo.close();
 		} catch (IOException e) {
@@ -115,11 +127,19 @@ public class Archivo {
 	
 	//Getter and setter
 	public String getRuta() {
-		return ruta;
+		return rutaleer;
 	}
 
 	public void setRuta(String ruta) {
-		this.ruta = ruta;
+		this.rutaleer = ruta;
+	}
+
+	public String getRutaguardar() {
+		return rutaguardar;
+	}
+
+	public void setRutaguardar(String rutaguardar) {
+		this.rutaguardar = rutaguardar;
 	}
 
 }

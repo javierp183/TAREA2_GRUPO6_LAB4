@@ -71,17 +71,19 @@ public class Persona {
 		this.Apellido = apellido;
 		this.Dni = dni;;
 	}
+	
+	
 
 	@Override
     public String toString() {
         return "Apellido: " + this.Apellido + " " + "Nombre: " + this.Nombre + " " + "Dni: " + this.Dni;
     }
 	
-	public static boolean validarDNI(String dni) throws FaltaDigitoException
+	// Valido DNI y uso la excepcion pedida por la profe.
+	public static boolean validarDNI(int dni) throws FaltaDigitoException
 	{
-		Boolean auxDigitos = false;
-		
-		if(dni.length() == 8) {
+		//Valido si el dni tiene 8 digitos
+		if(dni == 8) {
 			return true;
 		}
 		

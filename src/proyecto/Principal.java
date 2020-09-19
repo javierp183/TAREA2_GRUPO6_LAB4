@@ -26,105 +26,17 @@ import proyecto.Persona;
 public class Principal {
 
 	public static void main(String[] args) {
-
-		// Lista de Personas
-		ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
 		
-		//Agregue la lista Hash para Personas
-		HashSet<Persona> listahashPersonas = new HashSet<Persona>();
-
-		String[] contenido=null;
-		String linea="";
-
-		// Leer el archivo llamado Personas Empresa.txt
-		String ruta = "PersonasEmpresa.txt ";
-		FileReader entrada;
-		try {
-			entrada = new FileReader(ruta);
-			BufferedReader miBuffer = new BufferedReader(entrada);
-			ArrayList<Persona> auxPersonas = new ArrayList<Persona>();
-	
-			   //String linea = "";
-				while (linea != null) {
-					
-					contenido=linea.split("\\n-");
-
-					for(int i=0; i < contenido.length; i++) {
-						if(contenido[i] != "") {
-						Persona persona = new Persona();
-						persona.setNombre(contenido[i].split("-")[0]);
-						persona.setApellido(contenido[i].split("-")[1]);
-						int castnumdni = Integer.parseInt(contenido[i].split("-")[2]);
-
-						if(contenido[i].split("-")[2].length() == 8) {
-							persona.setDni(castnumdni);
-							listaPersonas.add(persona);
-						}
-						
-						}
-					}
-					
-					linea = miBuffer.readLine();
-				}
-				System.out.println(listaPersonas);
-				
-				//Eliminamos duplicado con hash implementado en Persona.
-				for(Persona element: listaPersonas) {
-					if(!auxPersonas.contains(element)) {
-						auxPersonas.add(element);
-					}
-				}
-			
-				
-				//System.out.println(auxPersonas);
-				
-				listaPersonas = auxPersonas;
-				
-				//System.out.println(listaPersonas);
-				
-				///Lista ordenada por Nombre de Z-A
-				Collections.sort(listaPersonas, new Comparator<Persona>() {
-					public int compare(Persona p1, Persona p2) {
-						return Integer.valueOf(p2.getNombre().compareTo(p1.getNombre()));
-					}
-				});
-				
-				System.out.println(listaPersonas);
+		// Lista de tipo Hash Set para
+		HashSet<Persona> listaPersonas = new HashSet<Persona>();
 		
-				
-				
-				miBuffer.close();
-				entrada.close();
-
-		} catch (IOException e) {
-			System.out.println("No se encontro el archivo");
-		}
+		//instancio la clase Archivo
+		Archivo miArchivo = new Archivo();
+		miArchivo.setRuta("PersonasEmpresa.txt");
+		miArchivo.setRutaguardar("salida.txt");
+		miArchivo.leeProcesoArchivo(listaPersonas);
+		miArchivo.escribeArchivoprocesado(listaPersonas);
 		
-
-
-		
-	
-		//Guarda la datos de la lista
-		try 
-		{	
-		String rutadondeguardo = "salida.txt";
-		FileWriter entradaguardo = new FileWriter(rutadondeguardo, true);
-		BufferedWriter miBuffer = new BufferedWriter(entradaguardo);
-		for(int i=0; i< listaPersonas.size(); i++)
-		{
-			Persona persona = new Persona();
-			persona.setNombre(listaPersonas.get(i).getNombre());
-			persona.setApellido(listaPersonas.get(i).getApellido());
-			persona.setDni(listaPersonas.get(i).getDni());
-			System.out.println(persona.getNombre() + "-" + persona.getApellido() + "-" + persona.getDni());
-			
-		miBuffer.write(persona.getNombre() + "-" + persona.getApellido() + "-" + persona.getDni() + "\n");
-		}
-		miBuffer.close();
-		entradaguardo.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
 	}
 
