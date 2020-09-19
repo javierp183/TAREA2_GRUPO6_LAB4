@@ -29,6 +29,9 @@ public class Principal {
 
 		// Lista de Personas
 		ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
+		
+		//Agregue la lista Hash para Personas
+		HashSet<Persona> listahashPersonas = new HashSet<Persona>();
 
 		String[] contenido=null;
 		String linea="";
@@ -45,14 +48,14 @@ public class Principal {
 				while (linea != null) {
 					
 					contenido=linea.split("\\n-");
-						
+
 					for(int i=0; i < contenido.length; i++) {
 						if(contenido[i] != "") {
 						Persona persona = new Persona();
 						persona.setNombre(contenido[i].split("-")[0]);
 						persona.setApellido(contenido[i].split("-")[1]);
 						int castnumdni = Integer.parseInt(contenido[i].split("-")[2]);
-						
+
 						if(contenido[i].split("-")[2].length() == 8) {
 							persona.setDni(castnumdni);
 							listaPersonas.add(persona);

@@ -1,6 +1,6 @@
 package proyecto;
 
-public class FaltaDigitoException extends Exception {
+public class FaltaDigitoException extends RuntimeException{
 	
 	public FaltaDigitoException()
 	{
