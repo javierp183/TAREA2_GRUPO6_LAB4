@@ -12,11 +12,12 @@ import java.util.Comparator;
 
 public class Archivo {
 	
+	private String ruta;
+	
 	public void leeArchivo(ArrayList<Persona> listaPersonas)
 	{
 	
 	// Leer el archivo llamado Personas Empresa.txt
-	String ruta = "PersonasEmpresa.txt ";
 	FileReader entrada;
 	
 	String[] contenido=null;
@@ -110,6 +111,15 @@ public class Archivo {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	//Getter and setter
+	public String getRuta() {
+		return ruta;
+	}
+
+	public void setRuta(String ruta) {
+		this.ruta = ruta;
 	}
 
 }
