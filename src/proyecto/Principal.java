@@ -33,7 +33,7 @@ public class Principal {
 		//instancio la clase Archivo
 		Archivo miArchivo = new Archivo();
 		miArchivo.setRuta("PersonasEmpresa.txt");
-		miArchivo.setRutaguardar("salida.txt");
+		miArchivo.setRutaguardar("Resultado.txt");
 		miArchivo.leeProcesoArchivo(listaPersonas);
 		miArchivo.escribeArchivoprocesado(listaPersonas);
 		
