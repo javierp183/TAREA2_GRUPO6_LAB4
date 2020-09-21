@@ -1,12 +1,5 @@
 package proyecto;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.*;
-import java.util.Comparator;
 
 
 import proyecto.Persona;
@@ -28,14 +21,13 @@ public class Principal {
 	public static void main(String[] args) {
 		
 		// Lista de tipo Hash Set para
-		HashSet<Persona> listaPersonas = new HashSet<Persona>();
+		TreeSet<Persona> listaPersonas = new TreeSet<Persona>();
 		
 		//instancio la clase Archivo
 		Archivo miArchivo = new Archivo();
 		miArchivo.setRuta("PersonasEmpresa.txt");
 		miArchivo.setRutaguardar("Resultado.txt");
 		miArchivo.leeProcesoArchivo(listaPersonas);
-		miArchivo.escribeArchivoprocesado(listaPersonas);
 		
 		
 	}

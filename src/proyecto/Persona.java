@@ -1,6 +1,6 @@
 package proyecto;
 
-public class Persona {
+public class Persona implements Comparable<Persona> {
 
 	private int Dni;
 	private String Nombre;
@@ -74,6 +74,13 @@ public class Persona {
 	
 	
 
+	@Override
+	public int compareTo(Persona o) {
+		// TODO Auto-generated method stub
+		
+		return o.getNombre().compareTo(this.getNombre());
+
+	}
 	@Override
     public String toString() {
         return "Apellido: " + this.Apellido + " " + "Nombre: " + this.Nombre + " " + "Dni: " + this.Dni;

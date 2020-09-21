@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
 
@@ -20,7 +21,7 @@ public class Archivo {
 	private String rutaguardar;
 	
 	
-	public void leeProcesoArchivo(HashSet<Persona> listaPersonas)
+	public void leeProcesoArchivo(TreeSet<Persona> listaPersonas)
 	{
 	
 	// Leer el archivo llamado Personas Empresa.txt
@@ -30,7 +31,8 @@ public class Archivo {
 	try {
 		entrada = new FileReader(rutaleer);
 		BufferedReader miBuffer = new BufferedReader(entrada);
-		ArrayList<Persona> auxPersonas = new ArrayList<Persona>();
+		//ArrayList<Persona> auxPersonas = new ArrayList<Persona>();
+		TreeSet<Persona> listaPersonas1 = new TreeSet<Persona>();
 
 		   //String linea = "";
 			while (linea != null) {
@@ -50,7 +52,7 @@ public class Archivo {
 						int castnumdni = Integer.parseInt(contenido[i].split("-")[2]);
 						persona.validarDNI(contenido[i].split("-")[2].length());
 						persona.setDni(castnumdni);
-						listaPersonas.add(persona);
+						listaPersonas1.add(persona);
 					
 					} catch (FaltaDigitoException e) {
 						
@@ -61,33 +63,11 @@ public class Archivo {
 				
 				linea = miBuffer.readLine();
 			}
-			System.out.println(listaPersonas);
-			
-			//Eliminamos duplicado con hash implementado en Persona.
-			for(Persona element: listaPersonas) {
-				if(!auxPersonas.contains(element)) {
-					auxPersonas.add(element);
-				}
-			}
-		
-			
-			// Esto esta comendato pero deberiamos ordenar el hash usando el ejemplo de los videos
-			//System.out.println(auxPersonas);
-			
-//			listaPersonas = auxPersonas;
-			
-			//System.out.println(listaPersonas);
-			
-			///Lista ordenada por Nombre de Z-A
-//			Collections.sort(listaPersonas, new Comparator<Persona>() {
-//				public int compare(Persona p1, Persona p2) {
-//					return Integer.valueOf(p2.getNombre().compareTo(p1.getNombre()));
-//				}
-//			});
-			
-			
+												
 			miBuffer.close();
 			entrada.close();
+			
+			escribeArchivoprocesado(listaPersonas1);
 
 	} catch (IOException e) {
 		System.out.println("No se encontro el archivo");
@@ -97,7 +77,7 @@ public class Archivo {
 
 	}
 	
-	public void escribeArchivoprocesado(HashSet<Persona> listaPersonas)
+	public void escribeArchivoprocesado(TreeSet<Persona> listaPersonas)
 	{
 		
 		try 
@@ -107,16 +87,13 @@ public class Archivo {
 		BufferedWriter miBuffer = new BufferedWriter(entradaguardo);
 		
 		
-		//java.util.Iterator<Persona> iterator = listaPersonas.iterator();
-		
-		List<Persona> lista = new ArrayList<Persona>( listaPersonas );
-		
-		for(int i=0; i<lista.size(); i++)
-		{
-			System.out.println(lista.get(i).getNombre() + "-" + lista.get(i).getApellido() + "-" + lista.get(i).getDni());
-			miBuffer.write(lista.get(i).getNombre() + "-" + lista.get(i).getApellido() + "-" + lista.get(i).getDni() + "\n");
-		}
 
+		
+		for (Persona item : listaPersonas) {
+			System.out.println(item.getNombre() + "-" + item.getApellido() + "-" + item.getDni() + "\n");
+			miBuffer.write(item.getNombre() + "-" + item.getApellido() + "-" + item.getDni() + "\n");
+		}
+		
 		miBuffer.close();
 		entradaguardo.close();
 		} catch (IOException e) {
