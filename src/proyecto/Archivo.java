@@ -55,7 +55,7 @@ public class Archivo {
 						listaPersonas1.add(persona);
 					
 					} catch (FaltaDigitoException e) {
-						
+						System.out.println("Este DNI no tiene 8 digitos.");
 					}
 					
 					}
